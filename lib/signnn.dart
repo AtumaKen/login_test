@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_test/dashbord/app_theme.dart';
 
 class SignupPage extends StatelessWidget {
   @override
@@ -23,7 +24,7 @@ class SignupPage extends StatelessWidget {
                 child: Center(
                   child: Icon(
                     Icons.headset_mic,
-                    color: Colors.greenAccent,
+                    color: AppTheme.lightText,
                     size: 50.0,
                   ),
                 ),
@@ -37,7 +38,7 @@ class SignupPage extends StatelessWidget {
                         "EMAIL",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent,
+                          color: AppTheme.lightText,
                           fontSize: 15.0,
                         ),
                       ),
@@ -52,7 +53,7 @@ class SignupPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: Colors.greenAccent,
+                        color: AppTheme.lightText,
                         width: 0.5,
                         style: BorderStyle.solid),
                   ),
@@ -88,7 +89,7 @@ class SignupPage extends StatelessWidget {
                         "PASSWORD",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent,
+                          color: AppTheme.lightText,
                           fontSize: 15.0,
                         ),
                       ),
@@ -103,7 +104,7 @@ class SignupPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: Colors.greenAccent,
+                        color: AppTheme.lightText,
                         width: 0.5,
                         style: BorderStyle.solid),
                   ),
@@ -139,7 +140,7 @@ class SignupPage extends StatelessWidget {
                         "CONFIRM PASSWORD",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent,
+                          color: AppTheme.lightText,
                           fontSize: 15.0,
                         ),
                       ),
@@ -154,7 +155,7 @@ class SignupPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: Colors.greenAccent,
+                        color: AppTheme.lightText,
                         width: 0.5,
                         style: BorderStyle.solid),
                   ),
@@ -191,7 +192,7 @@ class SignupPage extends StatelessWidget {
                         "Already have an account?",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent,
+                          color: AppTheme.lightText,
                           fontSize: 15.0,
                         ),
                         textAlign: TextAlign.end,
@@ -212,7 +213,7 @@ class SignupPage extends StatelessWidget {
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30.0),
                         ),
-                        color: Colors.greenAccent,
+                        color: AppTheme.lightText,
                         onPressed: () => {},
                         child: new Container(
                           padding: const EdgeInsets.symmetric(

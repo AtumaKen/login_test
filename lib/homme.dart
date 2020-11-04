@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_test/dashbord/app_theme.dart';
 
 class HomePage extends StatelessWidget {
   final PageController _controller;
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          color: Colors.greenAccent,
+          color: AppTheme.nearlyWhite,
           image: DecorationImage(
             colorFilter: new ColorFilter.mode(
                 Colors.black.withOpacity(0.1), BlendMode.dstATop),
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
               child: Center(
                 child: Icon(
                   Icons.headset_mic,
-                  color: Colors.white,
+                  color: AppTheme.lightText,
                   size: 40.0,
                 ),
               ),
@@ -77,7 +78,7 @@ class HomePage extends StatelessWidget {
                     child: new OutlineButton(
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30.0)),
-                      color: Colors.greenAccent,
+                      color: AppTheme.lightText,
                       highlightedBorderColor: Colors.white,
                       onPressed: () => gotoSignup(),
                       child: new Container(
@@ -93,7 +94,7 @@ class HomePage extends StatelessWidget {
                                 "SIGN UP",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: AppTheme.lightText,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -115,7 +116,7 @@ class HomePage extends StatelessWidget {
                     child: new FlatButton(
                       shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(30.0)),
-                      color: Colors.white,
+                      color: AppTheme.lightText,
                       onPressed: () => gotoLogin(),
                       child: new Container(
                         padding: const EdgeInsets.symmetric(
@@ -130,7 +131,7 @@ class HomePage extends StatelessWidget {
                                 "LOGIN",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Colors.greenAccent,
+                                    color: AppTheme.chipBackground,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),

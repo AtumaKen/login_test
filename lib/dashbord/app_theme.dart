@@ -17,6 +17,7 @@ class AppTheme {
   static const Color dismissibleBackground = Color(0xFF364A54);
   static const Color chipBackground = Color(0xFFEEF1F3);
   static const Color spacer = Color(0xFFF2F2F2);
+  static const Color unSelected = Color.fromRGBO(136, 180, 180, 1);
   static const String fontName = 'WorkSans';
 
   static const TextTheme textTheme = TextTheme(
@@ -53,6 +54,7 @@ class AppTheme {
     letterSpacing: 0.18,
     color: darkerText,
   );
+
 
   static const TextStyle subtitle = TextStyle( // subtitle2 -> subtitle
     fontFamily: fontName,

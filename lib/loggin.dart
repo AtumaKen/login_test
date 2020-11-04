@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_test/dashbord/app_theme.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -37,7 +38,7 @@ class LoginPage extends StatelessWidget {
                         "EMAIL",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent,
+                          color: AppTheme.lightText,
                           fontSize: 15.0,
                         ),
                       ),
@@ -53,7 +54,7 @@ class LoginPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: Colors.greenAccent,
+                        color: AppTheme.lightText,
                         width: 0.5,
                         style: BorderStyle.solid),
                   ),
@@ -88,7 +89,7 @@ class LoginPage extends StatelessWidget {
                         "PASSWORD",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent,
+                          color: AppTheme.lightText,
                           fontSize: 15.0,
                         ),
                       ),
@@ -104,7 +105,7 @@ class LoginPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        color: Colors.greenAccent,
+                        color: AppTheme.lightText,
                         width: 0.5,
                         style: BorderStyle.solid),
                   ),
@@ -140,7 +141,7 @@ class LoginPage extends StatelessWidget {
                         "Forgot Password?",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent,
+                          color: AppTheme.lightText,
                           fontSize: 15.0,
                         ),
                         textAlign: TextAlign.end,
@@ -162,7 +163,7 @@ class LoginPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         ),
-                        color: Colors.greenAccent,
+                        color: AppTheme.lightText,
                         onPressed: () => {},
                         child: Container(
                           padding: const EdgeInsets.symmetric(

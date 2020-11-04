@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_test/loggin.dart';
 import 'package:login_test/signnn.dart';
@@ -11,8 +12,8 @@ class LoginScreen3 extends StatefulWidget {
 
 class _LoginScreen3State extends State<LoginScreen3>
     with TickerProviderStateMixin {
-
-  PageController _controller = new PageController(initialPage: 1, viewportFraction: 1.0);
+  PageController _controller =
+      new PageController(initialPage: 1, viewportFraction: 1.0);
 
   @override
   Widget build(BuildContext context) {

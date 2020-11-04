@@ -49,6 +49,8 @@ flutter:
     - assets/images/full-bloom.png
     - assets/images/mountains.jpeg
     - assets/images/mountains.jpg
+    - assets/images/userImage.png
+    - assets/images/supportIcon.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
