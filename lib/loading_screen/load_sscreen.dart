@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:login_test/dashbord/app_theme.dart';
+import 'package:login_test/dashboard/app_theme.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -9,52 +9,59 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProviderStateMixin{
-  AnimationController controller;
-  Animation<double> animationRotation;
-  Animation<double> animationRadiusIn;
-  Animation<double> animationRadiusOut;
+  AnimationController _controller;
+  Animation<double> _animationRotation;
+  Animation<double> _animationRadiusIn;
+  Animation<double> _animationRadiusOut;
 
   double initialRadius = 40.0;
   double radius = 0.0;
+
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
     super.initState();
 
-    controller =
+    _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 5));
 
-    animationRadiusIn = Tween<double>(begin: 1.0, end: 0.0).animate(
+    _animationRadiusIn = Tween<double>(begin: 1.0, end: 0.0).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: _controller,
         curve: Interval(0.75, 1.0, curve: Curves.elasticIn),
       ),
     );
 
-    animationRotation = Tween<double>(begin: 0.0, end: 1).animate(
+    _animationRotation = Tween<double>(begin: 0.0, end: 1).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: _controller,
         curve: Interval(0.0, 1.0, curve: Curves.linear),
       ),
     );
 
-    animationRadiusOut = Tween<double>(begin: 0.0, end: 1.0).animate(
+    _animationRadiusOut = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
-        parent: controller,
+        parent: _controller,
         curve: Interval(0.0, 0.25, curve: Curves.elasticOut),
       ),
     );
 
-    controller.addListener(() {
+    _controller.addListener(() {
       setState(() {
-        if(controller.value >= 0.75 && controller.value <= 1.0){
-          radius = animationRadiusIn.value * initialRadius;
-        } else  if(controller.value >= 0.0 && controller.value <= 0.25){
-          radius = animationRadiusOut.value * initialRadius;
+        if(_controller.value >= 0.75 && _controller.value <= 1.0){
+          radius = _animationRadiusIn.value * initialRadius;
+        } else  if(_controller.value >= 0.0 && _controller.value <= 0.25){
+          radius = _animationRadiusOut.value * initialRadius;
         }
       });
     });
-    controller.repeat();
+    _controller.repeat();
     // rotationAnimationController.repeat();
   }
 
@@ -67,7 +74,7 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
           height: 100,
           child: Center(
             child: RotationTransition(
-              turns: animationRotation,
+              turns: _animationRotation,
               child: Stack(
                 children: [
                   Dot(radius: 30, color: Colors.blue),

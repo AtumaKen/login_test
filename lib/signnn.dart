@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_test/dashbord/app_theme.dart';
+import 'package:login_test/dashboard/app_theme.dart';
 
 class SignupPage extends StatelessWidget {
   @override

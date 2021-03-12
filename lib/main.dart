@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_test/dashbord/draw_test.dart';
+import 'package:login_test/dashboard/draw_test.dart';
 import 'package:login_test/terrr.dart';
 
 void main() {
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Color.fromRGBO(30, 61, 40, 1),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),

@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:login_test/widgets/menu_widget.dart';
 
 import 'app_theme.dart';
 
@@ -19,7 +22,8 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
-  List<DrawerList> drawerList;
+  List<DrawerModel> drawerList;
+  bool expanded = false;
 
   @override
   void initState() {
@@ -28,45 +32,56 @@ class _HomeDrawerState extends State<HomeDrawer> {
   }
 
   void setDrawerListArray() {
-    drawerList = <DrawerList>[
-      DrawerList(
-        index: DrawerIndex.HOME,
-        labelName: 'Home',
-        icon: Icon(Icons.home),
-      ),
-      DrawerList(
-        index: DrawerIndex.Help,
-        labelName: 'Help',
-        isAssetsImage: true,
-        imageName: 'assets/images/supportIcon.png',
-      ),
-      DrawerList(
-        index: DrawerIndex.FeedBack,
-        labelName: 'FeedBack',
-        icon: Icon(Icons.help),
-      ),
-      DrawerList(
-        index: DrawerIndex.Invite,
-        labelName: 'Invite Friend',
-        icon: Icon(Icons.group),
-      ),
-      DrawerList(
-        index: DrawerIndex.Share,
-        labelName: 'Rate the app',
-        icon: Icon(Icons.share),
-      ),
-      DrawerList(
-        index: DrawerIndex.About,
-        labelName: 'About Us',
-        icon: Icon(Icons.info),
-      ),
+    drawerList = <DrawerModel>[
+      DrawerModel(
+          index: DrawerIndex.HOME,
+          labelName: 'Dashboard',
+          icon: Icon(Icons.home),
+          subMenu: []),
+      DrawerModel(
+          index: DrawerIndex.Help,
+          labelName: 'Mobile Top-Up',
+          isAssetsImage: true,
+          imageName: 'assets/images/supportIcon.png',
+          subMenu: ["Buy Airtime", "Buy Data"]),
+      DrawerModel(
+          index: DrawerIndex.FeedBack,
+          labelName: 'Pay Bills',
+          icon: Icon(Icons.help),
+          subMenu: [
+            "Cable TV",
+            "Invoice Payments",
+            "Online Shopping",
+            "Utilities",
+            "School and Exam Fees",
+            "Product and Services",
+            "Merchant Payments",
+            "Event Tickets",
+            "Government Payments",
+            "Betting, Lottery/Gaming"
+          ]),
+      DrawerModel(
+          index: DrawerIndex.Invite,
+          labelName: 'Send, Receive Money',
+          icon: Icon(Icons.group),
+          subMenu: ["Send Money", "Receive Money", "Transfer Link"]),
+      DrawerModel(
+          index: DrawerIndex.Share,
+          labelName: 'More',
+          icon: Icon(Icons.share),
+          subMenu: ["Shopping Mall", "Book Flight", "Event Ticketing"]),
+      // DrawerList(
+      //   index: DrawerIndex.About,
+      //   labelName: 'About Us',
+      //   icon: Icon(Icons.info),
+      // ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(67, 109, 109, 1),
+      backgroundColor: AppTheme.easySwitchGreen,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -157,35 +172,41 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     Flexible(
                       flex: 1,
                       child: ListTile(
-                        leading: Icon(Icons.settings, color: AppTheme.unSelected,),
+                        leading: Icon(
+                          Icons.settings,
+                          color: AppTheme.unSelected,
+                        ),
                         trailing: Text(
                           "Settings",
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: AppTheme.unSelected,
-                            letterSpacing: 1
-                          ),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: AppTheme.unSelected,
+                              letterSpacing: 1),
                         ),
                       ),
                     ),
                     Flexible(
                       flex: 1,
                       child: ListTile(
-                        leading: Text("|", style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: AppTheme.unSelected,
-                        ),
+                        leading: Text(
+                          "|",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            color: AppTheme.unSelected,
+                          ),
                           textAlign: TextAlign.right,
                         ),
-                        trailing: Text("Log out", style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color:  AppTheme.unSelected,
-                          letterSpacing: 1
+                        trailing: Text(
+                          "Log out",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: AppTheme.unSelected,
+                              letterSpacing: 1),
+                          textAlign: TextAlign.left,
                         ),
-                          textAlign: TextAlign.left,),
                       ),
                     )
                   ],
@@ -201,78 +222,25 @@ class _HomeDrawerState extends State<HomeDrawer> {
     );
   }
 
-  Widget inkwell(DrawerList listData) {
+  Widget inkwell(DrawerModel listData) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
         splashColor: Colors.grey.withOpacity(0.1),
         highlightColor: Colors.transparent,
         onTap: () {
-          navigationtoScreen(listData.index);
-          widget.iconAnimationController.reverse();
+          navigationToScreen(listData.index);
+          // widget.iconAnimationController.reverse();
         },
-        child: Stack(
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    width: 6.0,
-                    height: 46.0,
-                    decoration: BoxDecoration(
-                      color: widget.screenIndex == listData.index
-                          ? AppTheme.nearlyWhite
-                          : Colors.transparent,
-                      borderRadius: new BorderRadius.only(
-                        topLeft: Radius.circular(0),
-                        topRight: Radius.circular(16),
-                        bottomLeft: Radius.circular(0),
-                        bottomRight: Radius.circular(16),
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(4.0),
-                  ),
-                  listData.isAssetsImage
-                      ? Container(
-                          width: 24,
-                          height: 24,
-                          child: Image.asset(listData.imageName,
-                              color: widget.screenIndex == listData.index
-                                  ? AppTheme.nearlyWhite
-                                  : AppTheme.unSelected),
-                        )
-                      : Icon(listData.icon.icon,
-                          color: widget.screenIndex == listData.index
-                              ? AppTheme.nearlyWhite
-                              : AppTheme.unSelected),
-                  const Padding(
-                    padding: EdgeInsets.all(4.0),
-                  ),
-                  Text(
-                    listData.labelName,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      letterSpacing: 1,
-                      color: widget.screenIndex == listData.index
-                          ? AppTheme.nearlyWhite
-                          : AppTheme.unSelected,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ],
-              ),
-            ),
-          ],
+        child: MenuItemWidget(
+          drawerModel: listData,
+          screenIndex: widget.screenIndex,
         ),
       ),
     );
   }
 
-  Future<void> navigationtoScreen(DrawerIndex indexScreen) async {
+  Future<void> navigationToScreen(DrawerIndex indexScreen) async {
     widget.callBackIndex(indexScreen);
   }
 }
@@ -287,18 +255,21 @@ enum DrawerIndex {
   Testing,
 }
 
-class DrawerList {
-  DrawerList({
-    this.isAssetsImage = false,
-    this.labelName = '',
-    this.icon,
-    this.index,
-    this.imageName = '',
-  });
+class DrawerModel {
+  DrawerModel(
+      {this.isAssetsImage = false,
+      this.labelName = '',
+      this.icon,
+      this.index,
+      this.expanded=false,
+      this.imageName = '',
+      this.subMenu});
 
   String labelName;
   Icon icon;
   bool isAssetsImage;
+  bool expanded;
   String imageName;
   DrawerIndex index;
+  List<String> subMenu;
 }

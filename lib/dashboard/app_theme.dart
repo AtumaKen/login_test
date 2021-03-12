@@ -18,6 +18,7 @@ class AppTheme {
   static const Color chipBackground = Color(0xFFEEF1F3);
   static const Color spacer = Color(0xFFF2F2F2);
   static const Color unSelected = Color.fromRGBO(136, 180, 180, 1);
+  static const Color easySwitchGreen = Color.fromRGBO(30, 61, 40, 1);
   static const String fontName = 'WorkSans';
 
   static const TextTheme textTheme = TextTheme(
