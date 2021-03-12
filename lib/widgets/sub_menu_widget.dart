@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:login_test/dashboard/app_theme.dart';
 
 class SubMenuWidget extends StatefulWidget {
-  final List<String> subMenuItems;
+  final String subMenuItem;
 
-  const SubMenuWidget({Key key, this.subMenuItems}) : super(key: key);
+  const SubMenuWidget({Key key, this.subMenuItem}) : super(key: key);
   @override
   _SubMenuWidgetState createState() => _SubMenuWidgetState();
 }
@@ -11,6 +12,9 @@ class SubMenuWidget extends StatefulWidget {
 class _SubMenuWidgetState extends State<SubMenuWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Text(
+      widget.subMenuItem,
+      style: AppTheme.subtitle,
+    );
   }
 }

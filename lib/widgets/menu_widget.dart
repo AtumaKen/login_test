@@ -3,13 +3,22 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/app_theme.dart';
 import 'package:login_test/dashboard/home_drawer.dart';
+import 'package:login_test/widgets/sub_menu_widget.dart';
 
 class MenuItemWidget extends StatefulWidget {
-   final DrawerModel drawerModel;
-   final DrawerIndex screenIndex;
+  final DrawerModel drawerModel;
+  final DrawerIndex listIndex;
+  final DrawerIndex screenIndex;
+  final Function callBackIndex;
 
+  const MenuItemWidget(
+      {Key key,
+      @required this.drawerModel,
+      @required this.listIndex,
+      @required this.screenIndex,
+      @required this.callBackIndex})
+      : super(key: key);
 
-   const MenuItemWidget({Key key, @required this.drawerModel, @required this.screenIndex}) : super(key: key);
   @override
   _MenuItemWidgetState createState() => _MenuItemWidgetState();
 }
@@ -19,11 +28,15 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
-      height: widget.drawerModel.expanded ? min(widget.drawerModel.subMenu.length *20.0 + 60, 100) :60,
+      height: widget.drawerModel.expanded
+          ? min(widget.drawerModel.subMenu.length * 20.0 + 60, 100)
+      // ? widget.drawerModel.subMenu.length * 20.0 + 60
+          : 60,
       child: Column(
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
+              widget.callBackIndex();
               setState(() {
                 widget.drawerModel.expanded = !widget.drawerModel.expanded;
               });
@@ -36,7 +49,7 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
                       width: 6.0,
                       height: 46.0,
                       decoration: BoxDecoration(
-                        color: widget.screenIndex == widget.drawerModel.index
+                        color: widget.listIndex == widget.screenIndex
                             ? AppTheme.nearlyWhite
                             : Colors.transparent,
                         borderRadius: new BorderRadius.only(
@@ -52,17 +65,17 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
                     ),
                     widget.drawerModel.isAssetsImage
                         ? Container(
-                      width: 24,
-                      height: 24,
-                      child: Image.asset(widget.drawerModel.imageName,
-                          color: widget.screenIndex == widget.drawerModel.index
-                              ? AppTheme.nearlyWhite
-                              : AppTheme.unSelected),
-                    )
+                            width: 24,
+                            height: 24,
+                            child: Image.asset(widget.drawerModel.imageName,
+                                color: widget.listIndex == widget.screenIndex
+                                    ? AppTheme.nearlyWhite
+                                    : AppTheme.unSelected),
+                          )
                         : Icon(widget.drawerModel.icon.icon,
-                        color: widget.screenIndex == widget.drawerModel.index
-                            ? AppTheme.nearlyWhite
-                            : AppTheme.unSelected),
+                            color: widget.listIndex == widget.screenIndex
+                                ? AppTheme.nearlyWhite
+                                : AppTheme.unSelected),
                     const Padding(
                       padding: EdgeInsets.all(4.0),
                     ),
@@ -72,7 +85,7 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                         letterSpacing: 1,
-                        color: widget.screenIndex == widget.drawerModel.index
+                        color: widget.listIndex == widget.screenIndex
                             ? AppTheme.nearlyWhite
                             : AppTheme.unSelected,
                       ),
@@ -83,8 +96,17 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
               ],
             ),
           ),
-          AnimatedContainer(duration: Duration(milliseconds: 500), child: Column(
-              children: widget.drawerModel.subMenu.map((e) => Text(e)).toList()), height: widget.drawerModel.expanded ? min(widget.drawerModel.subMenu.length *20.0 + 60, 100) :0,)
+          AnimatedContainer(
+            duration: Duration(milliseconds: 500),
+            child: Column(
+                children: widget.drawerModel.subMenu
+                    .map((e) => Text(e),)
+                    .toList()),
+            height: widget.drawerModel.expanded
+                ? min(widget.drawerModel.subMenu.length * 20.0 + 60, 90)
+            // ? widget.drawerModel.subMenu.length * 20.0
+                : 0,
+          )
         ],
       ),
     );

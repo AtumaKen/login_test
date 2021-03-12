@@ -170,8 +170,10 @@ class _CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
         setState(() {
           screenView = LoadingScreen();
         });
-      } else {
-        //do in your way......
+      } else if (drawerIndex == DrawerIndex.Share){
+        setState(() {
+          screenView = TestScreen();
+        });
       }
     }
   }
