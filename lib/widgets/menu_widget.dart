@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/app_theme.dart';
@@ -26,12 +25,13 @@ class MenuItemWidget extends StatefulWidget {
 class _MenuItemWidgetState extends State<MenuItemWidget> {
   @override
   Widget build(BuildContext context) {
+    double size = widget.drawerModel.subMenu.length * 30.0;
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
       height: widget.drawerModel.expanded
-          ? min(widget.drawerModel.subMenu.length * 20.0 + 60, 100)
-      // ? widget.drawerModel.subMenu.length * 20.0 + 60
-          : 60,
+          ? size + 70
+          // ? widget.drawerModel.subMenu.length * 20.0 + 60
+          : 70,
       child: Column(
         children: [
           GestureDetector(
@@ -96,15 +96,20 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
               ],
             ),
           ),
-          AnimatedContainer(
+          size == 0? SizedBox(height: 0, width: 0,): AnimatedContainer(
             duration: Duration(milliseconds: 500),
-            child: Column(
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+              child: Column(
                 children: widget.drawerModel.subMenu
-                    .map((e) => Text(e),)
-                    .toList()),
+                    .map(
+                      (e) => SubMenuWidget(subMenuItem: e),
+                    )
+                    .toList(),
+              ),
+            ),
             height: widget.drawerModel.expanded
-                ? min(widget.drawerModel.subMenu.length * 20.0 + 60, 90)
-            // ? widget.drawerModel.subMenu.length * 20.0
+                ? widget.drawerModel.subMenu.length * 30.0
                 : 0,
           )
         ],
