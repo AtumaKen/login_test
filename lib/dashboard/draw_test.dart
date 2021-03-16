@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:login_test/dashboard/test_screen.dart';
+import 'package:login_test/widgets/test_screen.dart';
 import 'package:login_test/loading_screen/load_sscreen.dart';
 import 'package:login_test/loggin.dart';
 import 'package:login_test/terrr.dart';
@@ -129,25 +129,6 @@ class _CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
     );
   }
 
-  Widget _subMenuBuilder(List<String> list) {
-    return list.isEmpty
-        ? Container()
-        : AnimatedContainer(
-            duration: Duration(milliseconds: 500),
-            child: ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (_, i) {
-                  return Material(
-                    child: InkWell(
-                      onTap: () {},
-                      child: ListTile(
-                        title: Text(list[i]),
-                      ),
-                    ),
-                  );
-                }),
-          );
-  }
 
   void changeIndex(DrawerIndex drawerIndexdata) {
     if (drawerIndex != drawerIndexdata) {
