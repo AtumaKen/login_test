@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/app_theme.dart';
 import 'package:login_test/dashboard/home_drawer.dart';
@@ -9,12 +8,14 @@ class MenuItemWidget extends StatefulWidget {
   final DrawerIndex listIndex;
   final DrawerIndex screenIndex;
   final Function callBackIndex;
+  final AnimationController controller;
 
   const MenuItemWidget(
       {Key key,
       @required this.drawerModel,
       @required this.listIndex,
       @required this.screenIndex,
+      @required this.controller,
       @required this.callBackIndex})
       : super(key: key);
 
@@ -25,7 +26,10 @@ class MenuItemWidget extends StatefulWidget {
 class _MenuItemWidgetState extends State<MenuItemWidget> {
   @override
   Widget build(BuildContext context) {
-    double size = widget.drawerModel.subMenu.length * 30.0;
+    DrawerModel drawerModel = widget.drawerModel;
+    double size = drawerModel.subMenu.length * 30.0;
+    List<String> titles = [];
+    drawerModel.subMenu.forEach((key, value) => titles.add(key));
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
       height: widget.drawerModel.expanded
@@ -96,22 +100,30 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
               ],
             ),
           ),
-          size == 0? SizedBox(height: 0, width: 0,): AnimatedContainer(
-            duration: Duration(milliseconds: 500),
-            alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: Column(
-                children: widget.drawerModel.subMenu
-                    .map(
-                      (e) => SubMenuWidget(subMenuItem: e),
-                    )
-                    .toList(),
-              ),
-            ),
-            height: widget.drawerModel.expanded
-                ? widget.drawerModel.subMenu.length * 30.0
-                : 0,
-          )
+          size == 0
+              ? SizedBox(
+                  height: 0,
+                  width: 0,
+                )
+              : AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  alignment: Alignment.center,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: titles
+                          .map(
+                            (val) => SubMenuWidget(
+                                subMenuItem: val,
+                                navigate: widget.callBackIndex,
+                                controller: widget.controller),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  height: widget.drawerModel.expanded
+                      ? widget.drawerModel.subMenu.length * 30.0
+                      : 0,
+                )
         ],
       ),
     );

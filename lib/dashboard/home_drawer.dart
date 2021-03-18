@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:login_test/dashboard/draw_test.dart';
 import 'package:login_test/widgets/menu_widget.dart';
 
 import 'app_theme.dart';
@@ -14,7 +14,7 @@ class HomeDrawer extends StatefulWidget {
 
   final AnimationController iconAnimationController;
   final DrawerIndex screenIndex;
-  final Function(DrawerIndex) callBackIndex;
+  final Function(DrawerModel) callBackIndex;
 
   @override
   _HomeDrawerState createState() => _HomeDrawerState();
@@ -36,44 +36,47 @@ class _HomeDrawerState extends State<HomeDrawer> {
           index: DrawerIndex.HOME,
           labelName: 'Dashboard',
           icon: Icon(Icons.home),
-          subMenu: []),
+          subMenu: {}),
       DrawerModel(
           index: DrawerIndex.Help,
           labelName: 'Mobile Top-Up',
           isAssetsImage: true,
           imageName: 'assets/images/supportIcon.png',
-          subMenu: ["Buy Airtime", "Buy Data"]),
+          subMenu: {"Buy Airtime": CustomDraw(), "Buy Data": CustomDraw()}),
       DrawerModel(
           index: DrawerIndex.FeedBack,
           labelName: 'Pay Bills',
           icon: Icon(Icons.help),
-          subMenu: [
-            "Cable TV",
-            "Invoice Payments",
-            "Online Shopping",
-            "Utilities",
-            "School and Exam Fees",
-            "Product and Services",
-            "Merchant Payments",
-            "Event Tickets",
-            "Government Payments",
-            "Betting, Lottery/Gaming"
-          ]),
+          subMenu: {
+            "Cable TV": CustomDraw(),
+            "Invoice Payments": CustomDraw(),
+            "Online Shopping": CustomDraw(),
+            "Utilities": CustomDraw(),
+            "School and Exam Fees": CustomDraw(),
+            "Product and Services": CustomDraw(),
+            "Merchant Payments": CustomDraw(),
+            "Event Tickets": CustomDraw(),
+            "Government Payments": CustomDraw(),
+            "Betting, Lottery/Gaming": CustomDraw(),
+          }),
       DrawerModel(
           index: DrawerIndex.Invite,
           labelName: 'Send, Receive Money',
           icon: Icon(Icons.group),
-          subMenu: ["Send Money", "Receive Money", "Transfer Link"]),
+          subMenu: {
+            "Send Money": CustomDraw(),
+            "Receive Money": CustomDraw(),
+            "Transfer Link": CustomDraw()
+          }),
       DrawerModel(
           index: DrawerIndex.Share,
           labelName: 'More',
           icon: Icon(Icons.share),
-          subMenu: ["Shopping Mall", "Book Flight", "Event Ticketing"]),
-      // DrawerList(
-      //   index: DrawerIndex.About,
-      //   labelName: 'About Us',
-      //   icon: Icon(Icons.info),
-      // ),
+          subMenu: {
+            "Shopping Mall": CustomDraw(),
+            "Book Flight": CustomDraw(),
+            "Event Ticketing": CustomDraw()
+          }),
     ];
   }
 
@@ -225,16 +228,17 @@ class _HomeDrawerState extends State<HomeDrawer> {
   Widget inkwell(DrawerModel listData) {
     return Material(
       color: Colors.transparent,
-        child: MenuItemWidget(
-          drawerModel: listData,
-          listIndex: listData.index,
-          screenIndex: widget.screenIndex,
-          callBackIndex: () =>navigationToScreen(listData.index),
+      child: MenuItemWidget(
+        drawerModel: listData,
+        listIndex: listData.index,
+        screenIndex: widget.screenIndex,
+        controller: widget.iconAnimationController,
+        callBackIndex: () => navigationToScreen(listData),
       ),
     );
   }
 
-  Future<void> navigationToScreen(DrawerIndex indexScreen) async {
+  Future<void> navigationToScreen(DrawerModel indexScreen) async {
     widget.callBackIndex(indexScreen);
   }
 }
@@ -265,5 +269,13 @@ class DrawerModel {
   bool expanded;
   String imageName;
   DrawerIndex index;
-  List<String> subMenu;
+  Map<String, Widget> subMenu;
+}
+
+class SubMenuModel {
+  String title;
+  Widget widget;
+  bool clicked;
+
+  SubMenuModel({this.title, this.widget, this.clicked});
 }

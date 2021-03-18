@@ -69,9 +69,9 @@ class _CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
                       screenIndex:
                           drawerIndex == null ? DrawerIndex.HOME : drawerIndex,
                       iconAnimationController: _animationController,
-                      callBackIndex: (DrawerIndex indexType) {
+                      callBackIndex: (DrawerModel drawerModel) {
                         try {
-                          changeIndex(indexType);
+                          changeIndex(drawerModel);
                         } catch (e) {}
                       },
                     );
@@ -130,14 +130,15 @@ class _CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
   }
 
 
-  void changeIndex(DrawerIndex drawerIndexdata) {
-    if (drawerIndex != drawerIndexdata) {
-      drawerIndex = drawerIndexdata;
+  void changeIndex(DrawerModel drawerModel) {
+    if (drawerIndex != drawerModel.index) {
+      drawerIndex = drawerModel.index;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
           screenView = LoginScreen3();
         });
-      } else if (drawerIndex == DrawerIndex.Help) {
+      } else if (drawerIndex == DrawerIndex.Help ) {
+
         setState(() {
           screenView = TestScreen();
         });
