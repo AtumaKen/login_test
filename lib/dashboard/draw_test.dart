@@ -18,10 +18,10 @@ class CustomDraw extends StatefulWidget {
       this.drawerIsOpen});
 
   @override
-  _CustomDrawState createState() => _CustomDrawState();
+  CustomDrawState createState() => CustomDrawState();
 }
 
-class _CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
+class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
   AnimationController _animationController;
   AnimationController iconAnimationController;
   bool expanded = false;
@@ -30,6 +30,7 @@ class _CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
   Widget screenView;
   Widget menuView;
   DrawerIndex drawerIndex;
+
 
   @override
   void initState() {
@@ -66,6 +67,7 @@ class _CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
                   animation: _animationController,
                   builder: (BuildContext context, Widget child) {
                     return HomeDrawer(
+                      screenView: screenView,
                       screenIndex:
                           drawerIndex == null ? DrawerIndex.HOME : drawerIndex,
                       iconAnimationController: _animationController,
@@ -134,28 +136,27 @@ class _CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
     if (drawerIndex != drawerModel.index) {
       drawerIndex = drawerModel.index;
       if (drawerIndex == DrawerIndex.HOME) {
-        setState(() {
-          screenView = LoginScreen3();
-        });
-      } else if (drawerIndex == DrawerIndex.Help ) {
-
-        setState(() {
-          screenView = TestScreen();
-        });
+        // setState(() {
+        //   screenView = CustomDraw();
+        // });
+      } else if (drawerIndex == DrawerIndex.MobileTopUp ) {
+          // setState(() {
+          //   screenView = LoginScreen3();
+          // });
       } else if (drawerIndex == DrawerIndex.FeedBack) {
-        setState(() {
-          screenView = Container(
-            color: Colors.yellow,
-          );
-        });
+        // setState(() {
+        //   screenView = Container(
+        //     color: Colors.yellow,
+        //   );
+        // });
       } else if (drawerIndex == DrawerIndex.Invite) {
-        setState(() {
-          screenView = LoadingScreen();
-        });
+        // setState(() {
+        //   screenView = LoadingScreen();
+        // });
       } else if (drawerIndex == DrawerIndex.Share){
-        setState(() {
-          screenView = TestScreen();
-        });
+        // setState(() {
+        //   screenView = TestScreen();
+        // });
       }
     }
   }

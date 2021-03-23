@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/draw_test.dart';
+import 'package:login_test/terrr.dart';
 import 'package:login_test/widgets/menu_widget.dart';
 
 import 'app_theme.dart';
@@ -9,18 +10,21 @@ class HomeDrawer extends StatefulWidget {
       {Key key,
       this.screenIndex,
       this.iconAnimationController,
+      this.screenView,
       this.callBackIndex})
       : super(key: key);
 
   final AnimationController iconAnimationController;
   final DrawerIndex screenIndex;
   final Function(DrawerModel) callBackIndex;
+  final Widget screenView;
 
   @override
   _HomeDrawerState createState() => _HomeDrawerState();
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
+  //i want to change the clicked property of the submenu model when a submenu item is tapped
   List<DrawerModel> drawerList;
   bool expanded = false;
 
@@ -36,47 +40,59 @@ class _HomeDrawerState extends State<HomeDrawer> {
           index: DrawerIndex.HOME,
           labelName: 'Dashboard',
           icon: Icon(Icons.home),
-          subMenu: {}),
+          subMenu: []),
       DrawerModel(
-          index: DrawerIndex.Help,
-          labelName: 'Mobile Top-Up',
-          isAssetsImage: true,
-          imageName: 'assets/images/supportIcon.png',
-          subMenu: {"Buy Airtime": CustomDraw(), "Buy Data": CustomDraw()}),
+        index: DrawerIndex.MobileTopUp,
+        labelName: 'Mobile Top-Up',
+        isAssetsImage: true,
+        imageName: 'assets/images/supportIcon.png',
+        subMenu: [
+          SubMenuModel(title: "Buy Airtime", widget: LoginScreen3(),),
+          SubMenuModel(
+            title: "Buy Data",
+            widget: LoginScreen3(),
+          )
+        ],
+      ),
+      // subMenu: {"Buy Airtime": CustomDraw(), "Buy Data": CustomDraw()}),
       DrawerModel(
           index: DrawerIndex.FeedBack,
           labelName: 'Pay Bills',
           icon: Icon(Icons.help),
-          subMenu: {
-            "Cable TV": CustomDraw(),
-            "Invoice Payments": CustomDraw(),
-            "Online Shopping": CustomDraw(),
-            "Utilities": CustomDraw(),
-            "School and Exam Fees": CustomDraw(),
-            "Product and Services": CustomDraw(),
-            "Merchant Payments": CustomDraw(),
-            "Event Tickets": CustomDraw(),
-            "Government Payments": CustomDraw(),
-            "Betting, Lottery/Gaming": CustomDraw(),
-          }),
+          subMenu: [
+            SubMenuModel(
+              title: "Cable Tv",
+              widget: CustomDraw(),
+            ),
+            SubMenuModel(title: "Invoice Payments", widget: CustomDraw()),
+            SubMenuModel(title: "Online Shopping", widget: CustomDraw()),
+            SubMenuModel(title: "Utilities", widget: CustomDraw()),
+            SubMenuModel(title: "School and Exam Fees", widget: CustomDraw()),
+            SubMenuModel(title: "Product and Services", widget: CustomDraw()),
+            SubMenuModel(title: "Merchant Payments", widget: CustomDraw()),
+            SubMenuModel(title: "Event Tickets", widget: CustomDraw()),
+            SubMenuModel(title: "Government Payments", widget: CustomDraw()),
+            SubMenuModel(
+                title: "Betting, Lottery/Gaming", widget: CustomDraw()),
+          ]),
       DrawerModel(
           index: DrawerIndex.Invite,
           labelName: 'Send, Receive Money',
           icon: Icon(Icons.group),
-          subMenu: {
-            "Send Money": CustomDraw(),
-            "Receive Money": CustomDraw(),
-            "Transfer Link": CustomDraw()
-          }),
+          subMenu: [
+            SubMenuModel(title: "Send Money", widget: CustomDraw()),
+            SubMenuModel(title: "Receive Money", widget: CustomDraw()),
+            SubMenuModel(title: "Transfer Link", widget: CustomDraw())
+          ]),
       DrawerModel(
           index: DrawerIndex.Share,
           labelName: 'More',
           icon: Icon(Icons.share),
-          subMenu: {
-            "Shopping Mall": CustomDraw(),
-            "Book Flight": CustomDraw(),
-            "Event Ticketing": CustomDraw()
-          }),
+          subMenu: [
+            SubMenuModel(title: "Shopping Mall", widget: CustomDraw()),
+            SubMenuModel(title: "Book Flight", widget: CustomDraw()),
+            SubMenuModel(title: "Event Ticketing", widget: CustomDraw())
+          ]),
     ];
   }
 
@@ -233,6 +249,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         listIndex: listData.index,
         screenIndex: widget.screenIndex,
         controller: widget.iconAnimationController,
+        screenView: widget.screenView,
         callBackIndex: () => navigationToScreen(listData),
       ),
     );
@@ -246,12 +263,14 @@ class _HomeDrawerState extends State<HomeDrawer> {
 enum DrawerIndex {
   HOME,
   FeedBack,
-  Help,
+  MobileTopUp,
   Share,
   About,
   Invite,
   Testing,
 }
+
+
 
 class DrawerModel {
   DrawerModel(
@@ -269,7 +288,7 @@ class DrawerModel {
   bool expanded;
   String imageName;
   DrawerIndex index;
-  Map<String, Widget> subMenu;
+  List<SubMenuModel> subMenu;
 }
 
 class SubMenuModel {
@@ -277,5 +296,5 @@ class SubMenuModel {
   Widget widget;
   bool clicked;
 
-  SubMenuModel({this.title, this.widget, this.clicked});
+  SubMenuModel({this.title, this.widget, this.clicked = false, });
 }

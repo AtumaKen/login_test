@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/app_theme.dart';
+import 'package:login_test/dashboard/draw_test.dart';
 import 'package:login_test/dashboard/home_drawer.dart';
 import 'package:login_test/widgets/sub_menu_widget.dart';
 
@@ -9,6 +10,7 @@ class MenuItemWidget extends StatefulWidget {
   final DrawerIndex screenIndex;
   final Function callBackIndex;
   final AnimationController controller;
+  final Widget screenView;
 
   const MenuItemWidget(
       {Key key,
@@ -16,6 +18,7 @@ class MenuItemWidget extends StatefulWidget {
       @required this.listIndex,
       @required this.screenIndex,
       @required this.controller,
+      @required this.screenView,
       @required this.callBackIndex})
       : super(key: key);
 
@@ -24,12 +27,13 @@ class MenuItemWidget extends StatefulWidget {
 }
 
 class _MenuItemWidgetState extends State<MenuItemWidget> {
+  final drawKey = GlobalKey<CustomDrawState>();
+
+  SubMenuModel subMenuModel;
   @override
   Widget build(BuildContext context) {
-    DrawerModel drawerModel = widget.drawerModel;
-    double size = drawerModel.subMenu.length * 30.0;
-    List<String> titles = [];
-    drawerModel.subMenu.forEach((key, value) => titles.add(key));
+    List<SubMenuModel> subMenuModels = widget.drawerModel.subMenu;
+    double size = subMenuModels.length * 30.0;
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
       height: widget.drawerModel.expanded
@@ -110,9 +114,9 @@ class _MenuItemWidgetState extends State<MenuItemWidget> {
                   alignment: Alignment.center,
                   child: SingleChildScrollView(
                     child: Column(
-                      children: titles
+                      children: subMenuModels
                           .map(
-                            (val) => SubMenuWidget(
+                            (val) => SubMenuWidget(key: drawKey,
                                 subMenuItem: val,
                                 navigate: widget.callBackIndex,
                                 controller: widget.controller),

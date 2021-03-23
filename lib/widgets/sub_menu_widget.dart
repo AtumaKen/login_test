@@ -1,11 +1,14 @@
+
 import 'package:flutter/material.dart';
+import 'package:login_test/dashboard/draw_test.dart';
+import 'package:login_test/dashboard/home_drawer.dart';
 
 class SubMenuWidget extends StatefulWidget {
-  final String subMenuItem;
+  final SubMenuModel subMenuItem;
   final Function navigate;
   final AnimationController controller;
 
-  const SubMenuWidget(
+   SubMenuWidget(
       {Key key,
       this.subMenuItem,
       @required this.navigate,
@@ -20,15 +23,18 @@ class _SubMenuWidgetState extends State<SubMenuWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         widget.navigate();
-        widget.controller.reverse();
+        // widget.controller.reverse();
+        setState(() {
+          CustomDrawState().screenView = widget.subMenuItem.widget;
+        });
       },
       child: Container(
         alignment: Alignment.topLeft,
         padding: EdgeInsets.only(left: 20, top: 10),
         child: Text(
-          widget.subMenuItem,
+          widget.subMenuItem.title,
           style: TextStyle(fontSize: 17, color: Colors.blueGrey),
         ),
       ),
