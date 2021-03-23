@@ -27,7 +27,7 @@ class _SubMenuWidgetState extends State<SubMenuWidget> {
         widget.navigate();
         // widget.controller.reverse();
         setState(() {
-          CustomDrawState().screenView = widget.subMenuItem.widget;
+          // CustomDrawState().screenView = widget.subMenuItem.widget;
         });
       },
       child: Container(

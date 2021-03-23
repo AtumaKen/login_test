@@ -46,53 +46,23 @@ class _HomeDrawerState extends State<HomeDrawer> {
         labelName: 'Mobile Top-Up',
         isAssetsImage: true,
         imageName: 'assets/images/supportIcon.png',
-        subMenu: [
-          SubMenuModel(title: "Buy Airtime", widget: LoginScreen3(),),
-          SubMenuModel(
-            title: "Buy Data",
-            widget: LoginScreen3(),
-          )
-        ],
       ),
       // subMenu: {"Buy Airtime": CustomDraw(), "Buy Data": CustomDraw()}),
       DrawerModel(
-          index: DrawerIndex.FeedBack,
+          index: DrawerIndex.PayBills,
           labelName: 'Pay Bills',
           icon: Icon(Icons.help),
-          subMenu: [
-            SubMenuModel(
-              title: "Cable Tv",
-              widget: CustomDraw(),
-            ),
-            SubMenuModel(title: "Invoice Payments", widget: CustomDraw()),
-            SubMenuModel(title: "Online Shopping", widget: CustomDraw()),
-            SubMenuModel(title: "Utilities", widget: CustomDraw()),
-            SubMenuModel(title: "School and Exam Fees", widget: CustomDraw()),
-            SubMenuModel(title: "Product and Services", widget: CustomDraw()),
-            SubMenuModel(title: "Merchant Payments", widget: CustomDraw()),
-            SubMenuModel(title: "Event Tickets", widget: CustomDraw()),
-            SubMenuModel(title: "Government Payments", widget: CustomDraw()),
-            SubMenuModel(
-                title: "Betting, Lottery/Gaming", widget: CustomDraw()),
-          ]),
+      ),
       DrawerModel(
-          index: DrawerIndex.Invite,
+          index: DrawerIndex.SendReceiveMoney,
           labelName: 'Send, Receive Money',
           icon: Icon(Icons.group),
-          subMenu: [
-            SubMenuModel(title: "Send Money", widget: CustomDraw()),
-            SubMenuModel(title: "Receive Money", widget: CustomDraw()),
-            SubMenuModel(title: "Transfer Link", widget: CustomDraw())
-          ]),
+          ),
       DrawerModel(
           index: DrawerIndex.Share,
           labelName: 'More',
           icon: Icon(Icons.share),
-          subMenu: [
-            SubMenuModel(title: "Shopping Mall", widget: CustomDraw()),
-            SubMenuModel(title: "Book Flight", widget: CustomDraw()),
-            SubMenuModel(title: "Event Ticketing", widget: CustomDraw())
-          ]),
+          ),
     ];
   }
 
@@ -262,15 +232,13 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
 enum DrawerIndex {
   HOME,
-  FeedBack,
+  PayBills,
   MobileTopUp,
   Share,
   About,
-  Invite,
+  SendReceiveMoney,
   Testing,
 }
-
-
 
 class DrawerModel {
   DrawerModel(
@@ -293,8 +261,6 @@ class DrawerModel {
 
 class SubMenuModel {
   String title;
-  Widget widget;
-  bool clicked;
 
-  SubMenuModel({this.title, this.widget, this.clicked = false, });
+  SubMenuModel({this.title});
 }

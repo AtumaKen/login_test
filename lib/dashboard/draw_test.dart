@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login_test/screens/sub_menu_screen.dart';
 import 'package:login_test/widgets/test_screen.dart';
 import 'package:login_test/loading_screen/load_sscreen.dart';
 import 'package:login_test/loggin.dart';
@@ -120,6 +121,7 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
               child: AnimatedIcon(
                 icon: AnimatedIcons.menu_arrow,
                 progress: _animationController,
+                color: Colors.white,
               ),
             ),
             onTap: () {
@@ -136,27 +138,83 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
     if (drawerIndex != drawerModel.index) {
       drawerIndex = drawerModel.index;
       if (drawerIndex == DrawerIndex.HOME) {
-        // setState(() {
-        //   screenView = CustomDraw();
-        // });
+        setState(() {
+          screenView = LoginScreen3();
+        });
       } else if (drawerIndex == DrawerIndex.MobileTopUp ) {
-          // setState(() {
-          //   screenView = LoginScreen3();
-          // });
-      } else if (drawerIndex == DrawerIndex.FeedBack) {
-        // setState(() {
-        //   screenView = Container(
-        //     color: Colors.yellow,
-        //   );
-        // });
-      } else if (drawerIndex == DrawerIndex.Invite) {
-        // setState(() {
-        //   screenView = LoadingScreen();
-        // });
+          setState(() {
+            screenView = SubMenuScreen(subMenus: [
+              SubMenuModel(
+                title: "Buy Airtime",
+              ),
+              SubMenuModel(
+                title: "Buy Data",
+              )
+            ], title: "Mobile Top-Up",);
+          });
+      } else if (drawerIndex == DrawerIndex.PayBills) {
+        setState(() {
+          screenView = SubMenuScreen(subMenus: [
+            SubMenuModel(
+              title: "Cable Tv",
+            ),
+            SubMenuModel(
+              title: "Invoice Payments",
+            ),
+            SubMenuModel(
+              title: "Online Shopping",
+            ),
+            SubMenuModel(
+              title: "Utilities",
+            ),
+            SubMenuModel(
+              title: "School and Exam Fees",
+            ),
+            SubMenuModel(
+              title: "Product and Services",
+            ),
+            SubMenuModel(
+              title: "Merchant Payments",
+            ),
+            SubMenuModel(
+              title: "Event Tickets",
+            ),
+            SubMenuModel(
+              title: "Government Payments",
+            ),
+            SubMenuModel(
+              title: "Betting, Lottery/Gaming",
+            ),
+          ], title: "Pay Bills",);
+        });
+      } else if (drawerIndex == DrawerIndex.SendReceiveMoney) {
+        setState(() {
+          screenView = SubMenuScreen(subMenus: [
+            SubMenuModel(
+              title: "Send Money",
+            ),
+            SubMenuModel(
+              title: "Receive Money",
+            ),
+            SubMenuModel(
+              title: "Transfer Link",
+            )
+          ], title: "Send, Receive Money",);
+        });
       } else if (drawerIndex == DrawerIndex.Share){
-        // setState(() {
-        //   screenView = TestScreen();
-        // });
+        setState(() {
+          screenView = SubMenuScreen(subMenus: [
+            SubMenuModel(
+              title: "Shopping Mall",
+            ),
+            SubMenuModel(
+              title: "Book Flight",
+            ),
+            SubMenuModel(
+              title: "Event Ticketing",
+            )
+          ], title: "More",);
+        });
       }
     }
   }
