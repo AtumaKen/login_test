@@ -42,18 +42,16 @@ class AppTheme {
 
   static const TextStyle headline = TextStyle( // h5 -> headline
     fontFamily: fontName,
-    fontWeight: FontWeight.bold,
     fontSize: 24,
     letterSpacing: 0.27,
-    color: darkerText,
+    color: Colors.white,
   );
 
   static const TextStyle title = TextStyle( // h6 -> title
     fontFamily: fontName,
-    fontWeight: FontWeight.bold,
-    fontSize: 16,
-    letterSpacing: 0.18,
-    color: darkerText,
+    fontSize: 18,
+    letterSpacing: 0.2,
+    color: Colors.white,
   );
 
 

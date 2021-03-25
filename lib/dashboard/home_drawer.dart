@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/draw_test.dart';
 import 'package:login_test/terrr.dart';
 import 'package:login_test/widgets/menu_widget.dart';
+import 'package:login_test/widgets/not_available.dart';
 
 import 'app_theme.dart';
 
@@ -261,6 +262,6 @@ class DrawerModel {
 
 class SubMenuModel {
   String title;
-
-  SubMenuModel({this.title});
+  Widget screen;
+  SubMenuModel({this.title, this.screen });
 }

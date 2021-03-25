@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:login_test/screens/dashboard.dart';
 import 'package:login_test/screens/sub_menu_screen.dart';
+import 'package:login_test/widgets/custom_alert.dart';
 import 'package:login_test/widgets/test_screen.dart';
 import 'package:login_test/loading_screen/load_sscreen.dart';
 import 'package:login_test/loggin.dart';
@@ -38,7 +40,7 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
     super.initState();
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 400));
-    screenView = LoginPage();
+    screenView = DashBoardScreen();
   }
 
   void toggle() => _animationController.isDismissed
@@ -121,7 +123,6 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
               child: AnimatedIcon(
                 icon: AnimatedIcons.menu_arrow,
                 progress: _animationController,
-                color: Colors.white,
               ),
             ),
             onTap: () {
@@ -139,16 +140,18 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
       drawerIndex = drawerModel.index;
       if (drawerIndex == DrawerIndex.HOME) {
         setState(() {
-          screenView = LoginScreen3();
+          screenView = DashBoardScreen();
         });
       } else if (drawerIndex == DrawerIndex.MobileTopUp ) {
           setState(() {
             screenView = SubMenuScreen(subMenus: [
               SubMenuModel(
                 title: "Buy Airtime",
+                screen: ECAlertDialog()
               ),
               SubMenuModel(
                 title: "Buy Data",
+                screen: ECAlertDialog()
               )
             ], title: "Mobile Top-Up",);
           });
