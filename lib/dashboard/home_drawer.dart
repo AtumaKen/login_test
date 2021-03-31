@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_test/dashboard/draw_test.dart';
-import 'package:login_test/terrr.dart';
+import 'package:login_test/screens/settings.dart';
 import 'package:login_test/widgets/menu_widget.dart';
-import 'package:login_test/widgets/not_available.dart';
 
 import 'app_theme.dart';
 
@@ -50,20 +48,20 @@ class _HomeDrawerState extends State<HomeDrawer> {
       ),
       // subMenu: {"Buy Airtime": CustomDraw(), "Buy Data": CustomDraw()}),
       DrawerModel(
-          index: DrawerIndex.PayBills,
-          labelName: 'Pay Bills',
-          icon: Icon(Icons.help),
+        index: DrawerIndex.PayBills,
+        labelName: 'Pay Bills',
+        icon: Icon(Icons.help),
       ),
       DrawerModel(
-          index: DrawerIndex.SendReceiveMoney,
-          labelName: 'Send, Receive Money',
-          icon: Icon(Icons.group),
-          ),
+        index: DrawerIndex.SendReceiveMoney,
+        labelName: 'Send, Receive Money',
+        icon: Icon(Icons.group),
+      ),
       DrawerModel(
-          index: DrawerIndex.Share,
-          labelName: 'More',
-          icon: Icon(Icons.share),
-          ),
+        index: DrawerIndex.Share,
+        labelName: 'More',
+        icon: Icon(Icons.share),
+      ),
     ];
   }
 
@@ -162,6 +160,10 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     Flexible(
                       flex: 1,
                       child: ListTile(
+                        onTap: () =>
+                            Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => SettingsScreen(),
+                        )),
                         leading: Icon(
                           Icons.settings,
                           color: AppTheme.unSelected,
@@ -263,5 +265,6 @@ class DrawerModel {
 class SubMenuModel {
   String title;
   Widget screen;
-  SubMenuModel({this.title, this.screen });
+
+  SubMenuModel({this.title, this.screen});
 }

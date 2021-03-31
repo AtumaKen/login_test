@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:login_test/screens/dashboard.dart';
 import 'package:login_test/screens/sub_menu_screen.dart';
 import 'package:login_test/widgets/custom_alert.dart';
-import 'package:login_test/widgets/test_screen.dart';
-import 'package:login_test/loading_screen/load_sscreen.dart';
-import 'package:login_test/loggin.dart';
-import 'package:login_test/terrr.dart';
 
 import 'home_drawer.dart';
 
@@ -33,7 +29,6 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
   Widget screenView;
   Widget menuView;
   DrawerIndex drawerIndex;
-
 
   @override
   void initState() {
@@ -121,6 +116,7 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
             child: Center(
               // if you use your own menu view UI you add form initialization
               child: AnimatedIcon(
+                color: Theme.of(context).iconTheme.color,
                 icon: AnimatedIcons.menu_arrow,
                 progress: _animationController,
               ),
@@ -134,7 +130,6 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
     );
   }
 
-
   void changeIndex(DrawerModel drawerModel) {
     if (drawerIndex != drawerModel.index) {
       drawerIndex = drawerModel.index;
@@ -142,81 +137,87 @@ class CustomDrawState extends State<CustomDraw> with TickerProviderStateMixin {
         setState(() {
           screenView = DashBoardScreen();
         });
-      } else if (drawerIndex == DrawerIndex.MobileTopUp ) {
-          setState(() {
-            screenView = SubMenuScreen(subMenus: [
-              SubMenuModel(
-                title: "Buy Airtime",
-                screen: ECAlertDialog()
-              ),
-              SubMenuModel(
-                title: "Buy Data",
-                screen: ECAlertDialog()
-              )
-            ], title: "Mobile Top-Up",);
-          });
+      } else if (drawerIndex == DrawerIndex.MobileTopUp) {
+        setState(() {
+          screenView = SubMenuScreen(
+            subMenus: [
+              SubMenuModel(title: "Buy Airtime", screen: ECAlertDialog()),
+              SubMenuModel(title: "Buy Data", screen: ECAlertDialog())
+            ],
+            title: "Mobile Top-Up",
+          );
+        });
       } else if (drawerIndex == DrawerIndex.PayBills) {
         setState(() {
-          screenView = SubMenuScreen(subMenus: [
-            SubMenuModel(
-              title: "Cable Tv",
-            ),
-            SubMenuModel(
-              title: "Invoice Payments",
-            ),
-            SubMenuModel(
-              title: "Online Shopping",
-            ),
-            SubMenuModel(
-              title: "Utilities",
-            ),
-            SubMenuModel(
-              title: "School and Exam Fees",
-            ),
-            SubMenuModel(
-              title: "Product and Services",
-            ),
-            SubMenuModel(
-              title: "Merchant Payments",
-            ),
-            SubMenuModel(
-              title: "Event Tickets",
-            ),
-            SubMenuModel(
-              title: "Government Payments",
-            ),
-            SubMenuModel(
-              title: "Betting, Lottery/Gaming",
-            ),
-          ], title: "Pay Bills",);
+          screenView = SubMenuScreen(
+            subMenus: [
+              SubMenuModel(
+                title: "Cable Tv",
+              ),
+              SubMenuModel(
+                title: "Invoice Payments",
+              ),
+              SubMenuModel(
+                title: "Online Shopping",
+              ),
+              SubMenuModel(
+                title: "Utilities",
+              ),
+              SubMenuModel(
+                title: "School and Exam Fees",
+              ),
+              SubMenuModel(
+                title: "Product and Services",
+              ),
+              SubMenuModel(
+                title: "Merchant Payments",
+              ),
+              SubMenuModel(
+                title: "Event Tickets",
+              ),
+              SubMenuModel(
+                title: "Government Payments",
+              ),
+              SubMenuModel(
+                title: "Betting, Lottery/Gaming",
+              ),
+            ],
+            title: "Pay Bills",
+          );
         });
       } else if (drawerIndex == DrawerIndex.SendReceiveMoney) {
         setState(() {
-          screenView = SubMenuScreen(subMenus: [
-            SubMenuModel(
-              title: "Send Money",
-            ),
-            SubMenuModel(
-              title: "Receive Money",
-            ),
-            SubMenuModel(
-              title: "Transfer Link",
-            )
-          ], title: "Send, Receive Money",);
+          screenView = SubMenuScreen(
+            subMenus: [
+              SubMenuModel(
+                title: "Send Money",
+              ),
+              SubMenuModel(
+                title: "Receive Money",
+              ),
+              SubMenuModel(
+                title: "Transfer Link",
+              )
+            ],
+            title: "Send, Receive Money",
+          );
         });
-      } else if (drawerIndex == DrawerIndex.Share){
+      } else if (drawerIndex == DrawerIndex.Share) {
         setState(() {
-          screenView = SubMenuScreen(subMenus: [
-            SubMenuModel(
-              title: "Shopping Mall",
-            ),
-            SubMenuModel(
-              title: "Book Flight",
-            ),
-            SubMenuModel(
-              title: "Event Ticketing",
-            )
-          ], title: "More",);
+          screenView = SubMenuScreen(
+            subMenus: [
+              SubMenuModel(
+                title: "Shopping Mall",
+              ),
+              SubMenuModel(
+                title: "Book Flight",
+              ),
+              SubMenuModel(
+                title: "Event Ticketing",
+              )
+            ],
+            title: "More",
+          );
         });
       }
     }

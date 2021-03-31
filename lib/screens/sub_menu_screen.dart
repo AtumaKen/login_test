@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/app_theme.dart';
 import 'package:login_test/dashboard/home_drawer.dart';
-import 'package:login_test/widgets/custom_alert.dart';
 import 'package:login_test/widgets/not_available.dart';
 
 class SubMenuScreen extends StatelessWidget {
@@ -13,10 +12,11 @@ class SubMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
         elevation: 0,
-        title: Text(title, style: TextStyle(color: Colors.black),),
-        backgroundColor: Colors.white70,
+        backgroundColor: Theme.of(context).appBarTheme.color,
+        title: Text(title, style: TextStyle(color: Theme.of(context).iconTheme.color),),
         centerTitle: true,
       ),
       body: Padding(
@@ -34,8 +34,7 @@ class SubMenuScreen extends StatelessWidget {
                   ),
                   title: Text(
                     subMenus[index].title,
-                    style: TextStyle(
-                        fontSize: 18, color: AppTheme.easySwitchGreen),
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                   trailing: Icon(
                     Icons.arrow_forward_ios_sharp,

@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:login_test/dashboard/app_theme.dart';
+import 'package:flutter/services.dart';
 import 'package:login_test/widgets/es_button.dart';
 
-class ECAlertDialog extends StatelessWidget {
+class ECAlertDialog extends StatefulWidget {
+  @override
+  _ECAlertDialogState createState() => _ECAlertDialogState();
+}
+
+class _ECAlertDialogState extends State<ECAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        title: Text("Airtime"),
+        elevation: 0,
+        backgroundColor: Theme.of(context).appBarTheme.color,
+        title: Text(
+          "Airtime",
+          style: TextStyle(color: Theme.of(context).iconTheme.color),
+        ),
         centerTitle: true,
       ),
       body: Center(
@@ -34,6 +44,7 @@ class ECAlertDialog extends StatelessWidget {
                     height: 10,
                   ),
                   TextField(
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -45,6 +56,7 @@ class ECAlertDialog extends StatelessWidget {
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
                         child: _networkWidget(),
@@ -82,17 +94,36 @@ class ECAlertDialog extends StatelessWidget {
     );
   }
 
+  String _selectedText = "MTN";
+  List<String> _options = ["MTN", "Glo", "Airtel", "9 Mobile", "Ntel"];
+
   Widget _networkWidget() {
     return Column(
       children: [
         Text("Network"),
-        TextField(
+        DropdownButtonFormField<String>(
+          isExpanded: true,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-        )
+          hint: Text("Select Your Network"),
+          value: _selectedText,
+          onChanged: (newValue) {
+            setState(() {
+              _selectedText = newValue;
+              // widget._bankNameController.text = _selectedText;
+            });
+          },
+          items: _options.map((reason) {
+            return DropdownMenuItem(
+              child: Text(reason),
+              value: reason,
+            );
+          }).toList(),
+          validator: (value) => value == null ? 'Select a bank' : null,
+        ),
       ],
     );
   }
@@ -102,6 +133,7 @@ class ECAlertDialog extends StatelessWidget {
       children: [
         Text("Amount"),
         TextField(
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),

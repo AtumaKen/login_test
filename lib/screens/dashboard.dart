@@ -7,6 +7,7 @@ class DashBoardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Stack(
         children: [
           Positioned(
@@ -25,7 +26,7 @@ class DashBoardScreen extends StatelessWidget {
               height: 200,
               width: 390,
               decoration: BoxDecoration(
-                border: Border.all(width: 0.1),
+                border: Border.all(width: 0.1, color: Theme.of(context).iconTheme.color),
                 borderRadius: BorderRadius.circular(
                   10,
                 ),
@@ -84,7 +85,7 @@ class DashBoardScreen extends StatelessWidget {
           Positioned(
             top: 380,
             left: 45,
-            child: _receivedSpent(
+            child: _receivedSpent(context,
               "Received",
               "\u20A6 0.00",
               Icon(
@@ -99,7 +100,7 @@ class DashBoardScreen extends StatelessWidget {
           Positioned(
             top: 380,
             right: 38,
-            child: _receivedSpent(
+            child: _receivedSpent(context,
               "Spent",
               "\u20A6 0.00",
               Icon(
@@ -130,8 +131,9 @@ class DashBoardScreen extends StatelessWidget {
     );
   }
 
-  Widget _receivedSpent(String title, String amount, Widget icon) {
+  Widget _receivedSpent(BuildContext context, String title, String amount, Widget icon) {
     return Card(
+      color: Theme.of(context).cardTheme.color,
       shadowColor: Colors.grey,
       elevation: 0,
       child: Padding(
@@ -147,6 +149,7 @@ class DashBoardScreen extends StatelessWidget {
                     title,
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
+                        color: Theme.of(context).iconTheme.color,
                         fontSize: 18,
                         letterSpacing: 0.5),
                   ),
