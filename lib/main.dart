@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/app_theme.dart';
 import 'package:login_test/dashboard/draw_test.dart';
 import 'package:login_test/providers/appstate_notifier.dart';
+import 'package:login_test/screens/authenticate_pageview.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: appState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-            home: CustomDraw(),
+            home: LoginScreen3(),
           );
         },
       ),

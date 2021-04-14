@@ -59,7 +59,7 @@ class DashBoardScreen extends StatelessWidget {
             top: 130,
             left: 20,
             child: Container(
-              height: size.height * 0.38,
+              height: 300,
               width: size.width * 0.912,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),

@@ -5,6 +5,7 @@ class HomePage extends StatelessWidget {
   final PageController _controller;
 
   HomePage(this._controller);
+
   gotoLogin() {
     _controller.animateToPage(
       0,
@@ -20,6 +21,7 @@ class HomePage extends StatelessWidget {
       curve: Curves.bounceOut,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,27 +30,27 @@ class HomePage extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppTheme.nearlyWhite,
           image: DecorationImage(
-            colorFilter: new ColorFilter.mode(
+            colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(0.1), BlendMode.dstATop),
             image: AssetImage('assets/images/mountains.jpg'),
             fit: BoxFit.cover,
           ),
         ),
-        child: new Column(
+        child: Column(
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(top: 250.0),
               child: Center(
                 child: Icon(
                   Icons.headset_mic,
-                  color: AppTheme.lightText,
+                  color: AppTheme.easySwitchGreen,
                   size: 40.0,
                 ),
               ),
             ),
             Container(
               padding: EdgeInsets.only(top: 20.0),
-              child: new Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
@@ -68,33 +70,34 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            new Container(
+            Container(
               width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 150.0),
+              margin:
+                  const EdgeInsets.only(left: 30.0, right: 30.0, top: 150.0),
               alignment: Alignment.center,
-              child: new Row(
+              child: Row(
                 children: <Widget>[
-                  new Expanded(
-                    child: new OutlineButton(
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
-                      color: AppTheme.lightText,
+                  Expanded(
+                    child: OutlineButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      color: AppTheme.easySwitchGreen,
                       highlightedBorderColor: Colors.white,
                       onPressed: () => gotoSignup(),
-                      child: new Container(
+                      child: Container(
                         padding: const EdgeInsets.symmetric(
                           vertical: 20.0,
                           horizontal: 20.0,
                         ),
-                        child: new Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            new Expanded(
+                            Expanded(
                               child: Text(
                                 "SIGN UP",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: AppTheme.lightText,
+                                    color: AppTheme.easySwitchGreen,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -106,27 +109,27 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            new Container(
+            Container(
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
               alignment: Alignment.center,
-              child: new Row(
+              child: Row(
                 children: <Widget>[
-                  new Expanded(
-                    child: new FlatButton(
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
-                      color: AppTheme.lightText,
+                  Expanded(
+                    child: FlatButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)),
+                      color: AppTheme.easySwitchGreen,
                       onPressed: () => gotoLogin(),
-                      child: new Container(
+                      child: Container(
                         padding: const EdgeInsets.symmetric(
                           vertical: 20.0,
                           horizontal: 20.0,
                         ),
-                        child: new Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            new Expanded(
+                            Expanded(
                               child: Text(
                                 "LOGIN",
                                 textAlign: TextAlign.center,
