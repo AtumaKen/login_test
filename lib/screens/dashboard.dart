@@ -6,6 +6,7 @@ import 'package:login_test/widgets/name_icon_item.dart';
 class DashBoardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
       body: Stack(
@@ -58,8 +59,8 @@ class DashBoardScreen extends StatelessWidget {
             top: 130,
             left: 20,
             child: Container(
-              height: 300,
-              width: 390,
+              height: size.height * 0.38,
+              width: size.width * 0.912,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 gradient: LinearGradient(colors: [
@@ -134,8 +135,8 @@ class DashBoardScreen extends StatelessWidget {
   Widget _receivedSpent(BuildContext context, String title, String amount, Widget icon) {
     return Card(
       color: Theme.of(context).cardTheme.color,
-      shadowColor: Colors.grey,
-      elevation: 0,
+      shadowColor: Colors.black,
+      elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(18),
         child: Column(

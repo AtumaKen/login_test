@@ -202,7 +202,7 @@ class SignupPage extends StatelessWidget {
                   ),
                 ],
               ),
-              new Container(
+               Container(
                 width: MediaQuery.of(context).size.width,
                 margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 50.0),
                 alignment: Alignment.center,
