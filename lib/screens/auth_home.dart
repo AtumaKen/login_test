@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FocusScope.of(context).unfocus();
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,

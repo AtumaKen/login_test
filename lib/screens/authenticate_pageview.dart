@@ -25,7 +25,7 @@ class _LoginScreen3State extends State<LoginScreen3>
           children: <Widget>[
             LoginPage(),
             HomePage(_controller),
-            SignupPage(_controller)
+            SignUpPage(_controller)
           ],
           scrollDirection: Axis.horizontal,
         ));
