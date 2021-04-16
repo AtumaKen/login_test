@@ -22,11 +22,11 @@ class LoginPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(120.0),
                 child: Center(
-                  child: Icon(
-                    Icons.headset_mic,
-                    color: Colors.redAccent,
-                    size: 50.0,
-                  ),
+                  // child: Icon(
+                  //   Icons.headset_mic,
+                  //   color: Colors.redAccent,
+                  //   size: 50.0,
+                  // ),
                 ),
               ),
               Row(

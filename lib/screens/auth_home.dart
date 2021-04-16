@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
           color: AppTheme.nearlyWhite,
           image: DecorationImage(
             colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.1), BlendMode.dstATop),
+                Colors.black.withOpacity(0.1), BlendMode.dst),
             image: AssetImage('assets/images/mountains.jpg'),
             fit: BoxFit.cover,
           ),
@@ -41,11 +41,11 @@ class HomePage extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(top: 250.0),
               child: Center(
-                child: Icon(
-                  Icons.headset_mic,
-                  color: AppTheme.easySwitchGreen,
-                  size: 40.0,
-                ),
+                // child: Icon(
+                //   Icons.headset_mic,
+                //   color: AppTheme.easySwitchGreen,
+                //   size: 40.0,
+                // ),
               ),
             ),
             Container(
@@ -54,14 +54,14 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Awesome",
+                    "Easy",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20.0,
                     ),
                   ),
                   Text(
-                    "App",
+                    "credit",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
