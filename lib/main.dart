@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_test/dashboard/app_theme.dart';
-import 'package:login_test/providers/appstate_notifier.dart';
+import 'package:login_test/providers/theme_mode_notifier.dart';
 import 'package:login_test/screens/authenticate_pageview.dart';
 import 'package:provider/provider.dart';
 

@@ -109,7 +109,7 @@ class AppTheme {
     iconTheme: IconThemeData(
       color: Colors.black87,
     ),
-    cardTheme: CardTheme(color: Colors.white)
+    cardTheme: CardTheme(color: Colors.white),
   );
 
   static final ThemeData darkTheme = ThemeData(

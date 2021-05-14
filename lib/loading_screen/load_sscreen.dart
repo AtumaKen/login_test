@@ -8,7 +8,8 @@ class LoadingScreen extends StatefulWidget {
   _LoadingScreenState createState() => _LoadingScreenState();
 }
 
-class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProviderStateMixin{
+class _LoadingScreenState extends State<LoadingScreen>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animationRotation;
   Animation<double> _animationRadiusIn;
@@ -16,7 +17,6 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
 
   double initialRadius = 40.0;
   double radius = 0.0;
-
 
   @override
   void dispose() {
@@ -54,9 +54,9 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
 
     _controller.addListener(() {
       setState(() {
-        if(_controller.value >= 0.75 && _controller.value <= 1.0){
+        if (_controller.value >= 0.75 && _controller.value <= 1.0) {
           radius = _animationRadiusIn.value * initialRadius;
-        } else  if(_controller.value >= 0.0 && _controller.value <= 0.25){
+        } else if (_controller.value >= 0.0 && _controller.value <= 0.25) {
           radius = _animationRadiusOut.value * initialRadius;
         }
       });
